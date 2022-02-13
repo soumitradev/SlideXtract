@@ -11,6 +11,7 @@ I didn't find any other piece of code that did all the stuff I wanted, so I'll t
 - Customizable interval between frames, so you don't end up extracting every single frame in the video.
 - Customizable threshold distance to help differentiate between slides. Can be adjusted to fit your video better.
 - Parallel processing while extracting frames from video
+- Batch processing
 
 ## Requirements
 
@@ -19,7 +20,7 @@ I didn't find any other piece of code that did all the stuff I wanted, so I'll t
 ## Usage
 
 ```
-Usage: slidextract.exe [--path PATH] [--interval INTERVAL] [--threshold THRESHOLD] [--workers WORKERS] [--format FORMAT]
+Usage: slidextract --path PATH [--interval INTERVAL] [--threshold THRESHOLD] [--workers WORKERS] [--format FORMAT] [--batch BATCH]
 
 Options:
   --path PATH, -i PATH   Path to video.
@@ -31,6 +32,8 @@ Options:
                          Number of processes to run parallelly. [default: 8]
   --format FORMAT, -f FORMAT
                          File format of output slides. Allowed values are: bmp (fastest), png (slowest) and jpg/jpeg. [default: bmp]
+  --batch BATCH, -b BATCH
+                         Describes if Path is a path to a folder of videos. [default: 0]
 ```
 
 For some reason the `bmp` format is fastest, and the `png` format is slowest. This probably has something to do with codecs, and how `ffmpeg` handles stuff. This has been tested on a real lecture (about an hour long) with a 5 second interval between frames.
@@ -54,6 +57,5 @@ So far, some things we can improve on:
 - Speeding up frame extraction if possible
 - Speeding up the algorithm by which we find distance between frames
 - Alternate image distance algorithms
-- Batch processing of files
 
 If you have more ideas, feel free to open a PR/Issue!
