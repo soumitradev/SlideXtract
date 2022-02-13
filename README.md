@@ -1,4 +1,4 @@
-# SlidExtract
+# SlideXtract
 
 A tool to help extract slides from a video file.
 
@@ -57,5 +57,6 @@ So far, some things we can improve on:
 - Speeding up frame extraction if possible
 - Speeding up the algorithm by which we find distance between frames
 - Alternate image distance algorithms
+- Hardware acceleration support for `ffmpeg`
 
 If you have more ideas, feel free to open a PR/Issue!
