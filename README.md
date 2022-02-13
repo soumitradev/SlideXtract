@@ -1,4 +1,4 @@
-# SlidExtract
+# SlideXtract
 
 A tool to help extract slides from a video file.
 
