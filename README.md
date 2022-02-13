@@ -55,5 +55,6 @@ So far, some things we can improve on:
 - Speeding up the algorithm by which we find distance between frames
 - Alternate image distance algorithms
 - Batch processing of files
+- Hardware acceleration support for `ffmpeg`
 
 If you have more ideas, feel free to open a PR/Issue!
