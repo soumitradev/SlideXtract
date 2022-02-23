@@ -31,7 +31,7 @@ type args struct {
 }
 
 func (args) Version() string {
-	return "slidextract v0.1.1"
+	return "slidextract v0.1.2"
 }
 
 func fastCompare(img1, img2 *image.RGBA) (int64, error) {
