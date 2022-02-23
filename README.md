@@ -27,7 +27,7 @@ Options:
   --interval INTERVAL, -t INTERVAL
                          Time between frames. [default: 0.5s]
   --threshold THRESHOLD, -d THRESHOLD
-                         Threshold distance to recognize as different frame. [default: 10000]
+                         Threshold distance to recognize as different frame. [default: 1000]
   --workers WORKERS, -w WORKERS
                          Number of processes to run parallelly. [default: 8]
   --format FORMAT, -f FORMAT

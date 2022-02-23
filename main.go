@@ -24,7 +24,7 @@ import (
 type args struct {
 	Path      string        `arg:"required,-i" help:"Path to video."`
 	Interval  time.Duration `default:"0.5s" arg:"-t" help:"Time between frames."`
-	Threshold int           `default:"10000" arg:"-d" help:"Threshold distance to recognize as different frame."`
+	Threshold int           `default:"1000" arg:"-d" help:"Threshold distance to recognize as different frame."`
 	Workers   int           `default:"8" arg:"-w" help:"Number of processes to run parallelly."`
 	Format    string        `default:"bmp" arg:"-f" help:"File format of output slides. Allowed values are: bmp (fastest), png (slowest) and jpg/jpeg."`
 	Batch     int           `default:"0" arg:"-b" help:"Describes if Path is a path to a folder of videos."`
@@ -38,14 +38,16 @@ func fastCompare(img1, img2 *image.RGBA) (int64, error) {
 	if img1.Bounds() != img2.Bounds() {
 		return 0, fmt.Errorf("image bounds not equal: %+v, %+v", img1.Bounds(), img2.Bounds())
 	}
-
+	pxcount := img1.Bounds().Dx() * img1.Bounds().Dy()
 	accumError := uint64(0)
 
 	for i := 0; i < len(img1.Pix); i++ {
 		accumError += (sqDiffUInt8(img1.Pix[i], img2.Pix[i]))
 	}
 
-	return int64(math.Sqrt(float64(accumError))), nil
+	fmt.Println(int64(math.Sqrt(float64(accumError)) * 100000 / float64(pxcount)))
+
+	return int64(math.Sqrt(float64(accumError)) * 100000 / float64(pxcount)), nil
 }
 
 func getImageFromFilePath(filePath, format string) (*image.RGBA, error) {
@@ -162,6 +164,7 @@ func generateSlides(args args, outputDir string) {
 			panic(err)
 		}
 		distAB, err := fastCompare(a, b)
+		fmt.Println(distAB)
 		if err != nil {
 			panic(err)
 		}
