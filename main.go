@@ -35,11 +35,7 @@ type args struct {
 }
 
 func (args) Version() string {
-<<<<<<< HEAD
 	return "slidextract v0.2.0"
-=======
-	return "slidextract v0.1.2"
->>>>>>> 150b39f24944d2465f10d4ec74bbf5ae6fa46ef5
 }
 
 func fastCompare(img1, img2 *image.RGBA) (int64, error) {
