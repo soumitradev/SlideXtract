@@ -12,6 +12,7 @@ I didn't find any other piece of code that did all the stuff I wanted, so I'll t
 - Customizable threshold distance to help differentiate between slides. Can be adjusted to fit your video better.
 - Parallel processing while extracting frames from video
 - Batch processing
+- In-memory processing
 
 ## Requirements
 
@@ -20,7 +21,7 @@ I didn't find any other piece of code that did all the stuff I wanted, so I'll t
 ## Usage
 
 ```
-Usage: slidextract --path PATH [--interval INTERVAL] [--threshold THRESHOLD] [--workers WORKERS] [--format FORMAT] [--batch BATCH]
+Usage: slidextract --path PATH [--interval INTERVAL] [--threshold THRESHOLD] [--inmemory INMEMORY] [--workers WORKERS] [--maxframes MAXFRAMES] [--format FORMAT] [--batch BATCH]
 
 Options:
   --path PATH, -i PATH   Path to video.
@@ -28,12 +29,18 @@ Options:
                          Time between frames. [default: 0.5s]
   --threshold THRESHOLD, -d THRESHOLD
                          Threshold distance to recognize as different frame. [default: 1000]
+  --inmemory INMEMORY, -m INMEMORY
+                         Describes if processing is to be done in memory. [default: 0]
   --workers WORKERS, -w WORKERS
-                         Number of processes to run parallelly. [default: 8]
+                         Number of processes to run parallelly. NOTE: If processing is being done in memory, processing is forced single threaded. [default: 8]
+  --maxframes MAXFRAMES, -x MAXFRAMES
+                         [InMemory only] Maximum number of unprocessed frames to hold in memory at a time. [default: 25]
   --format FORMAT, -f FORMAT
                          File format of output slides. Allowed values are: bmp (fastest), png (slowest) and jpg/jpeg. [default: bmp]
   --batch BATCH, -b BATCH
                          Describes if Path is a path to a folder of videos. [default: 0]
+  --help, -h             display this help and exit
+  --version              display version and exit
 ```
 
 For some reason the `bmp` format is fastest, and the `png` format is slowest. This probably has something to do with codecs, and how `ffmpeg` handles stuff. This has been tested on a real lecture (about an hour long) with a 5 second interval between frames.
